@@ -109,24 +109,6 @@ also want to set the TERM environment variable to `putty` or `putty-256color`.
 If that still doesn't do the trick then try running dvtm with the
 following ncurses related environment variable set `NCURSES_NO_UTF8_ACS=1`.
 
-## Development
-
-You can always fetch the current code base from the git repository.
-
-    git clone https://github.com/martanne/dvtm.git
-
-or
-
-    git clone git://repo.or.cz/dvtm.git
-
-If you have comments, suggestions, ideas, a bug report, a patch or something
-else related to abduco then write to the
-[suckless developer mailing list](http://suckless.org/community)
-or contact me directly mat[at]brain-dump.org.
-
-[![Build Status](https://travis-ci.org/martanne/dvtm.svg?branch=master)](https://travis-ci.org/martanne/dvtm)
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/4256/badge.svg)](https://scan.coverity.com/projects/4256)
-
 ## License
 
 Based on dvtm; dvtm reuses some code of dwm and is released under the same
