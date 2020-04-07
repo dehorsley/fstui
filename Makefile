@@ -7,10 +7,10 @@ OBJ = ${SRC:.c=.o}
 
 DESTDIR ?= /usr2/st
 
-all: clean options dvtm
+all: clean options fstui
 
 options:
-	@echo dvtm build options:
+	@echo fstui build options:
 	@echo "CFLAGS   = ${CFLAGS}"
 	@echo "LDFLAGS  = ${LDFLAGS}"
 	@echo "CC       = ${CC}"
@@ -33,7 +33,7 @@ debug: clean
 
 clean:
 	@echo cleaning
-	@rm -f dvtm ${OBJ} dvtm-${VERSION}.tar.gz
+	@rm -f fstui ${OBJ} fstui-${VERSION}.tar.gz
 
 dist: clean
 	@echo creating dist tarball
@@ -53,8 +53,8 @@ install: fstui
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
-	@rm -f ${DESTDIR}${PREFIX}/bin/dvtm
-	@rm -f ${DESTDIR}${PREFIX}/bin/dvtm-status
+	@rm -f ${DESTDIR}${PREFIX}/bin/fstui
+	@rm -f ${DESTDIR}${PREFIX}/bin/fstui-status
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/dvtm.1
 
