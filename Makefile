@@ -5,6 +5,8 @@ CFLAGS += -g
 SRC = dvtm.c vt.c
 OBJ = ${SRC:.c=.o}
 
+DESTDIR ?= /usr2/st
+
 all: clean options dvtm
 
 options:
@@ -44,21 +46,10 @@ dist: clean
 	@gzip dvtm-${VERSION}.tar
 	@rm -rf dvtm-${VERSION}
 
-install: dvtm
-	@echo stripping executable
-	@${STRIP} dvtm
+install: fstui
 	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
-	@cp -f dvtm ${DESTDIR}${PREFIX}/bin
-	@chmod 755 ${DESTDIR}${PREFIX}/bin/dvtm
-	@cp -f dvtm-status ${DESTDIR}${PREFIX}/bin
-	@chmod 755 ${DESTDIR}${PREFIX}/bin/dvtm-status
-	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
-	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
-	@sed "s/VERSION/${VERSION}/g" < dvtm.1 > ${DESTDIR}${MANPREFIX}/man1/dvtm.1
-	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/dvtm.1
-	@echo installing terminfo description
-	@TERMINFO=${TERMINFO} tic -s dvtm.info
+	@cp -f fstui ${DESTDIR}${PREFIX}/bin
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
