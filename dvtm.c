@@ -1335,20 +1335,26 @@ scrolln(const char* args[])
         return;
     }
 
+    Client* c;
     int n = atoi(args[0]);
 
-    for (Client* c = clients; c; c = c->next)
-        for (n = 0, c = nextvisible(clients); c; c = nextvisible(c->next))
-            if (!c->minimized)
-                n++;
+    for (Client* c = nextvisible(clients); c; c = nextvisible(c->next)) {
+        if (c->order == n) {
+            goto found;
+        }
+    }
+    return;
+
+
+found:
 
     if (!args[1] || atoi(args[1]) < 0)
-        vt_scroll(sel->term, -sel->h / 2);
+        vt_scroll(c->term, -c->h / 2);
     else
-        vt_scroll(sel->term, sel->h / 2);
+        vt_scroll(c->term, c->h / 2);
 
-    draw(sel);
-    curs_set(vt_cursor_visible(sel->term));
+    draw(c);
+    curs_set(vt_cursor_visible(c->term));
 }
 
 static void
