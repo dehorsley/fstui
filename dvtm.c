@@ -1338,7 +1338,7 @@ scrolln(const char* args[])
     Client* c;
     int n = atoi(args[0]);
 
-    for (Client* c = nextvisible(clients); c; c = nextvisible(c->next)) {
+    for (c = nextvisible(clients); c; c = nextvisible(c->next)) {
         if (c->order == n) {
             goto found;
         }
@@ -1347,6 +1347,7 @@ scrolln(const char* args[])
 
 
 found:
+    curs_set(0);
 
     if (!args[1] || atoi(args[1]) < 0)
         vt_scroll(c->term, -c->h / 2);
@@ -1354,7 +1355,6 @@ found:
         vt_scroll(c->term, c->h / 2);
 
     draw(c);
-    curs_set(vt_cursor_visible(c->term));
 }
 
 static void

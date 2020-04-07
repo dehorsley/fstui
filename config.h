@@ -24,6 +24,8 @@ static Color colors[] = {
 	[BLUE]    = { .fg = COLOR_BLUE, .bg = -1, .fg256 = 68, .bg256 = -1, },
 };
 
+#define LOG_WINDOW         "6"
+
 #define COLOR(c)        COLOR_PAIR(colors[c].pair)
 /* curses attributes for the currently focused window */
 #define SELECTED_ATTR   (COLOR(BLUE) | A_BOLD)
@@ -139,8 +141,8 @@ static KeyBinding bindings[] = {
 	{ { CTRL('o'),         }, { focusn,         { "1", NULL }               } },
 	{ { CTRL('k'),         }, { focusprev,      { NULL }                    } },
 	{ { CTRL('j'),         }, { focusnext,      { NULL }                    } },
-	{ { KEY_PPAGE,         }, { scrolln,        { "1",  "-1" }              } },
-	{ { KEY_NPAGE,         }, { scrolln,        { "1", "1"  }               } },
+	{ { KEY_PPAGE,         }, { scrolln,        { LOG_WINDOW,  "-1" }              } },
+	{ { KEY_NPAGE,         }, { scrolln,        { LOG_WINDOW, "1"  }               } },
 	TAGKEYS( '1',                              0)
 	TAGKEYS( '2',                              1)
 	TAGKEYS( '3',                              2)
@@ -194,8 +196,8 @@ static Button buttons[] = {
 	// { BUTTON1_DOUBLE_CLICKED, { mouse_fullscreen, { "[ ]" } } },
 	// { BUTTON2_CLICKED,        { mouse_zoom,       { NULL  } } },
 	// { BUTTON3_CLICKED,        { mouse_minimize,   { NULL  } } },
-	{  BUTTON4_PRESSED,              { scrolln,        { "1", "-1" } } },
-	{  BUTTON5_PRESSED,              { scrolln,        { "1", "1"  } } },
+	{  BUTTON4_PRESSED,              { scrolln,        { LOG_WINDOW, "1" } } },
+	{  BUTTON5_PRESSED,              { scrolln,        { LOG_WINDOW, "-1"  } } },
 };
 #endif /* CONFIG_MOUSE */
 
