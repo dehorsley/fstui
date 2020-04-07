@@ -190,6 +190,7 @@ static void paste(const char* args[]);
 static void quit(const char* args[]);
 static void redraw(const char* args[]);
 static void scrollback(const char* args[]);
+static void scrolln(const char* args[]);
 static void send(const char* args[]);
 static void setlayout(const char* args[]);
 static void incnmaster(const char* args[]);
@@ -1337,11 +1338,11 @@ scrolln(const char* args[])
     int n = atoi(args[0]);
 
     for (Client* c = clients; c; c = c->next)
-	for (n = 0, c = nextvisible(clients); c; c = nextvisible(c->next))
-		if (!c->minimized)
-			n++;
+        for (n = 0, c = nextvisible(clients); c; c = nextvisible(c->next))
+            if (!c->minimized)
+                n++;
 
-    if (!args[0] || atoi(args[0]) < 0)
+    if (!args[1] || atoi(args[1]) < 0)
         vt_scroll(sel->term, -sel->h / 2);
     else
         vt_scroll(sel->term, sel->h / 2);
